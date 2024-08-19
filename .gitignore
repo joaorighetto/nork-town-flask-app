@@ -1,0 +1,10 @@
+## Build
+__pycache__/
+*.pyc
+*.log
+*.pot
+
+## Development
+.idea/
+.env
+venv/
