@@ -8,3 +8,5 @@ __pycache__/
 .idea/
 .env
 venv/
+*.db
+instance/
