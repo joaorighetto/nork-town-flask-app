@@ -1,14 +1,19 @@
 from flask import Flask
+from flask_admin import Admin
+
+from app.admin.admin import CarAdminView, PersonAdminView
 from app.database import db
-from app.routes.person_routes import person_bp
-from app.routes.car_routes import car_bp
+from app.models import Car, Person
 
 
 def create_app():
     app = Flask(__name__)
+    
     app.config.from_object('instance.config.Config')
-    app.register_blueprint(person_bp)
-    app.register_blueprint(car_bp)
+    
+    admin = Admin(app, name='nork-town')
+    admin.add_view(CarAdminView(Car, db.session))
+    admin.add_view(PersonAdminView(Person, db.session))
 
     db.init_app(app)
     
