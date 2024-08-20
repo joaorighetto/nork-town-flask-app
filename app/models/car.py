@@ -24,9 +24,7 @@ class Car(db.Model):
             'id': self.id,
             'color': self.color.name,  
             'model': self.model.name,  
-            'owner': {
-                'id': self.owner.id,
-                'name': self.owner.name
-            }
+            'owner_id': self.owner.id,
+            'owner_name': self.owner.name
         }
     
