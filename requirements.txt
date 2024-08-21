@@ -1,6 +1,7 @@
 Flask~=3.0
 Flask-SQLAlchemy~=3.1
+flask-login~=0.6
 flask-admin[sqlalchemy]~=1.6
+flask-wtf~=1.2
 wtforms-sqlalchemy~=0.4
-python-dotenv~=1.0
 marshmallow~=3.21

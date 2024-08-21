@@ -1,6 +1,5 @@
-from marshmallow import Schema, fields, validates, post_load, ValidationError
+from marshmallow import Schema, fields, validates, ValidationError
 from app.models import Person
-from app.database import db
 
 
 class CarSchema(Schema):
@@ -14,5 +13,3 @@ class CarSchema(Schema):
         user = Person.query.get(owner_id)
         if user and len(user.cars) >= 3:
             raise ValidationError("A user can't own more than 3 cars.")
-        
-    

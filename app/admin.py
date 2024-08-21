@@ -1,14 +1,35 @@
+from flask import redirect, url_for
+from flask_admin import expose, AdminIndexView
+from flask_login import current_user
 from flask_admin.contrib.sqla import ModelView
 from wtforms import ValidationError
 
 from app.models import Car
 
 
+class CustomAdminIndexView(AdminIndexView):
+    @expose('/')
+    def index(self):
+        return self.render('admin/index.html', user=current_user)
+    
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login'))
+
+
 class BaseAdminView(ModelView):
     can_view_details = True
     create_modal = True
     edit_modal = True
+    
+    def is_accessible(self):
+        return current_user.is_authenticated
 
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login'))
+    
 
 class CarAdminView(BaseAdminView):
     column_list = ('id', 'model', 'color', 'owner_id', 'owner.name')
