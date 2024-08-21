@@ -4,9 +4,9 @@ Nork-Town is a weird place. Crows cawk the misty morning while old men squint. I
 
 This repository contains the codebase for the Nork-Town project, which includes a Flask application, Docker setup, and various configuration files.
 
-### [`Makefile`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fhome%2Fjoaorighetto%2FDev%2FNork-Town%2FMakefile%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "/home/joaorighetto/Dev/Nork-Town/Makefile")
+### `Makefile`
 
-The [`Makefile`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fhome%2Fjoaorighetto%2FDev%2FNork-Town%2FMakefile%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "/home/joaorighetto/Dev/Nork-Town/Makefile") provides convenient commands for managing the Docker containers and running custom commands. It includes targets for starting and stopping the Docker containers, as well as creating a superuser.
+The `Makefile` provides convenient commands for managing the Docker containers and running custom commands. It includes targets for starting and stopping the Docker containers, as well as creating a superuser.
 
 ```makefile
 CONTAINER_ID := $(shell docker ps -n 1 -q) # Get the container ID of the last container created
