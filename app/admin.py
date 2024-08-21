@@ -46,7 +46,7 @@ class CarAdminView(BaseAdminView):
     def validate_owner_car_limit(self, form, field):
         owner_id = field.data
         car_count = Car.query.filter_by(owner_id=owner_id).count()
-        if car_count >= 3:
+        if car_count > 3:
             raise ValidationError('An owner cannot have more than 3 cars.')
         
     def on_model_change(self, form, model, is_created):
