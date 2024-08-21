@@ -8,19 +8,6 @@ class Person(db.Model):
     
     def __repr__(self):
         return f'<Person {self.id}: {self.name}>'
-        
-    def to_dict(self):
-        if self.has_car:
-            return {
-                'id': self.id,
-                'name': self.name,
-                'cars': [car.to_dict() for car in self.cars]
-            }
-        else:
-            return {
-                'id': self.id,
-                'name': self.name
-            }
 
     @property
     def has_car(self):
