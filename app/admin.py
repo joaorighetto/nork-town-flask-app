@@ -53,7 +53,7 @@ class PersonAdminView(BaseAdminView):
 
     def _list_thumbnail(view, context, model, name):
         if not model.cars:
-            return ''
+            return 'SALE OPPORTUNITY'
         return ' // '.join([f"{car.model.name} ({car.color.name})" for car in model.cars])
 
     column_formatters = {
