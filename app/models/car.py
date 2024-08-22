@@ -8,7 +8,7 @@ from app.database import db
 class CarColor(Enum):
     YELLOW = "yellow"
     BLUE = "blue"
-    RED = "red"  
+    GRAY = "gray"  
     
 class CarModel(Enum):
     HATCH = "hatch"
