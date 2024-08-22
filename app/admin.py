@@ -2,9 +2,6 @@ from flask import redirect, url_for
 from flask_admin import expose, AdminIndexView
 from flask_login import current_user
 from flask_admin.contrib.sqla import ModelView
-from wtforms import ValidationError
-
-from app.models import Car
 
 
 class CustomAdminIndexView(AdminIndexView):
@@ -25,7 +22,7 @@ class BaseAdminView(ModelView):
     edit_modal = True
     
     def is_accessible(self):
-        return current_user.is_authenticated
+        return current_user.is_authenticated and current_user.is_admin
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('login'))
@@ -41,17 +38,7 @@ class CarAdminView(BaseAdminView):
         'owner_id': 'Owner ID',
         'owner.name': 'Owner Name'
     }
-    form_columns = ('model', 'color', 'owner_id')  
-    
-    def validate_owner_car_limit(self, form, field):
-        owner_id = field.data
-        car_count = Car.query.filter_by(owner_id=owner_id).count()
-        if car_count > 3:
-            raise ValidationError('An owner cannot have more than 3 cars.')
-        
-    def on_model_change(self, form, model, is_created):
-        self.validate_owner_car_limit(form, form.owner_id)
-        return super(CarAdminView, self).on_model_change(form, model, is_created)
+    form_columns = ('model', 'color', 'owner_id')
 
 
 class PersonAdminView(BaseAdminView):
