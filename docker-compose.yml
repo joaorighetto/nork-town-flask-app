@@ -1,11 +1,27 @@
-version: '3'
+version: '3.8'
+
 services:
-  web:
+  app:
     build: .
     volumes:
-      - .:/app
       - ./instance:/app/instance
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+    command: flask run --host=0.0.0.0
     ports:
       - "5000:5000"
     env_file:
       - .env
+
+  tests:
+    build: .
+    volumes:
+      - ./instance:/app/instance
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+    command: pytest -p no:warnings -s
+    env_file:
+      - .env
+    
